@@ -1,0 +1,9 @@
+infer:
+  folder_path: "dataset/mvtec_anomaly_detection/hazelnut/test/print"
+  image_type: ".png"
+  gt_path: "dataset/mvtec_anomaly_detection/hazelnut/ground_truth/print"
+  min_threshold: 0.5
+  max_threshold: 0.6
+  threshold_increments: 0.8
+  prompts: ["white print", "white color"]
+evaluate:

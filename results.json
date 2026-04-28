@@ -1,0 +1,1 @@
+[{"prompt": "white print", "threshold": 0.5, "pixel_auroc": 0.7955030202865601}, {"prompt": "white color", "threshold": 0.5, "pixel_auroc": 0.6454835534095764}]
