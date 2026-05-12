@@ -12,7 +12,8 @@ class EvaluationJobGenerator(JobGenerator):
         """Generate Jobs via random selection."""
         assert prev_stage_results is not None, "Previous stage result is required"
         for key in prev_stage_results:
-            yield EvaluationJob(results=prev_stage_results[key], prompt=key, threshold=prev_stage_results[key][0]["threshold"])
+            results_per_prompt = prev_stage_results[key]
+            yield EvaluationJob(results=results_per_prompt, prompt=key)
 
     @property
     def job_class(self) -> type:

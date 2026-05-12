@@ -1,0 +1,75 @@
+generic:
+    "damage", 
+    "damaged", 
+    "error",
+    "broken"
+
+hazelnut:
+    crack:
+        "crack",
+        "cracked",
+        "hole"
+
+    cut:
+        "cut",
+        "hole",
+        "split",
+        "notch",
+        "scratch"
+
+    hole:
+        "hole",
+        "holes",
+        "crack",
+        "cracked"
+        
+    print:
+        "white color",
+        "white print"
+        "white letters", 
+        "print", 
+        "letters", 
+        "letter", 
+        "text",
+        "color"
+
+
+wood:
+    scratch:
+        "scratch",
+        "scratches",            frisst zu viel GPU RAM, läuft nicht durch
+        "scratched surface"     markiert alles, nimmt eher als prompt "surface" allgemein
+
+zipper:  
+    broken_teeth:
+        "broken teeth",
+        "broken tooth",
+        "split teeth",
+        "broken zipper",
+        "faulty zipper"
+
+    fabric_border:
+        "damaged fabric",
+        "cut"
+
+    fabric_interior:
+        "damaged fabric",
+        "holes",                frisst zu viel GPU RAM, läuft nicht durch
+        "damaged surface"
+
+    rough:
+        "rough teeth",
+        "rough tooth",
+        "rough edges",
+        "rough zipper"
+
+    split_teeth:
+        "split teeth",
+        "broken teeth",
+        "broken zipper",
+        "faulty zipper"
+
+    squeezed_teeth:
+        "squeezed teeth",
+        "broken teeth",
+        "broken zipper"

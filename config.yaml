@@ -1,9 +1,7 @@
 infer:
-  folder_path: "dataset/mvtec_anomaly_detection/hazelnut/test/print"
+  folder_path: "dataset/mvtec_anomaly_detection/zipper/test/broken_teeth"
+  gt_path: "dataset/mvtec_anomaly_detection/zipper/ground_truth/broken_teeth"
   image_type: ".png"
-  gt_path: "dataset/mvtec_anomaly_detection/hazelnut/ground_truth/print"
-  min_threshold: 0.5
-  max_threshold: 0.6
-  threshold_increments: 0.8
-  prompts: ["white print", "white color"]
+  good_pictures: "dataset/mvtec_anomaly_detection/zipper/test/good"
+  prompts: ["damaged"]
 evaluate:
