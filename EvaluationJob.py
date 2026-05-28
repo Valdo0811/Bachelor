@@ -140,7 +140,7 @@ class EvaluationJob(Job):
         
         torch.save(batch, f'predictions/{y}/{x}/{fixed_prompt}.pt')
         
-        return
+        #return
         
         del images
         del gt_labels

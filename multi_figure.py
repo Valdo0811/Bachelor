@@ -64,8 +64,11 @@ for key in aupro:
                     if aupro_sorted[i+1]["value"] <= aupro_:
                         aupro_sorted.insert(i+1, aup)
                         added = True
+                    else:
+                        aupro_sorted.insert(i, aup) 
+                        added = True
                 else:
-                    aupro_sorted.append(aup) 
+                    aupro_sorted.insert(i, aup) 
                     added = True
                 break 
         if not added:
