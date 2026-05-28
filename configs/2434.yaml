@@ -1,0 +1,7 @@
+infer:
+  folder_path: "dataset/mvtec_anomaly_detection/transistor/test/cut_lead"
+  gt_path: "dataset/mvtec_anomaly_detection/transistor/ground_truth/cut_lead"
+  image_type: ".png"
+  good_pictures: "dataset/mvtec_anomaly_detection/transistor/test/good"
+  prompts: ["damage"]
+evaluate:

@@ -34,7 +34,7 @@ class InferenceJob(Job):
             gt = transform(gt).to(device="cuda")
         res = {"masks": masks, "scores": scores, "anomaly_maps": maps, "image": im, "ground_truth": gt, "image_path": self.image, "gt_path": self.ground_truth, "prompt": self.prompt,
                "gt_label": gt_label}
-        print(res)
+        #print(res)
         return res
     
     @staticmethod

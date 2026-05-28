@@ -1,8 +1,49 @@
 generic:
     "damage", 
     "damaged", 
-    "error",
+    "error",   hab ich dann weggelassen, weil prompt nie gute ergebnisse geliefert hat
     "broken"
+
+cable:
+    missing_cable:
+        "missing cable",
+        "empty cable",
+        "hole"
+
+    missing_wire:
+        "missing wire",
+        "empty wire",
+        "hole"
+
+
+    poke_insulation:
+        "poke insulation",
+        "damaged insulation",
+        "hole in insulation"
+
+
+grid:
+    bent:
+        "bent",
+        "bends",
+        "bent metal"
+
+    broken:
+        "broken metal grid",
+        "damaged metal"
+
+    glue:
+        "glue",
+        "glue drop",
+        "liquid"
+
+    metal_contamination:
+        "metal contamination",
+        "excess metal"
+
+    thread:
+        "thread",
+        "wool"
 
 hazelnut:
     crack:
@@ -34,7 +75,62 @@ hazelnut:
         "color"
 
 
+screw:
+    manipulated_front:
+        "damaged screw",
+        "malformed screw"
+
+    scratch_head:
+        "scratch",
+        "scratched screw"
+
+    scratch_neck:
+        "scratch",
+        "scratched screw"
+
+    thread_side:
+        "broken thread",
+        "damaged screw",
+        "damaged thread"
+
+    thread_top:
+        "broken thread",
+        "damaged screw",
+        "damaged thread"
+
+tile: wsl relativ ähnlich zu holz, deswegen andere priorisiert
+
+toothbrush:
+    defective:
+        "defective",
+        "defective toothbrush"
+
+transistor:
+    damaged_case:
+        "damaged case",
+        "damaged transistor"
+
+    misplaced:
+        "misplaced transistor",
+        "missing transistor"
+        
+
 wood:
+    color:
+        "color",
+        "stains",
+        "color stains"
+
+    hole:
+        "hole",
+        "crack",
+        "drilled hole"
+
+    liquid:
+        "liquid",
+        "spilt liquid",
+        "drops"
+
     scratch:
         "scratch",
         "scratches",            frisst zu viel GPU RAM, läuft nicht durch
