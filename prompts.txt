@@ -66,13 +66,13 @@ hazelnut:
         
     print:
         "white color",
-        "white print"
+        "white print",
         "white letters", 
         "print", 
         "letters", 
         "letter", 
         "text",
-        "color"
+        "color",
 
 
 screw:

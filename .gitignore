@@ -3,3 +3,4 @@ src/sam3
 runs/
 __pycache__/
 *.pt
+configs/

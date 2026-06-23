@@ -16,9 +16,9 @@ class InferenceJobGenerator(JobGenerator):
         model = build_sam3_image_model()
         processor = Sam3Processor(model)
         
-        folder_path = args["folder_path"] + "/*" + args["image_type"]
-        gt_path = args["gt_path"] + "/*" + args["image_type"]
-        good_pictures = args["good_pictures"] + "/*" + args["image_type"]
+        folder_path = args["folder_path"] + "/*" + ".png"
+        gt_path = args["gt_path"] + "/*" + ".png"
+        good_pictures = args["good_pictures"] + "/*" + ".png"
 
         image_paths = []
         

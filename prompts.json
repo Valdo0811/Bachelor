@@ -1,0 +1,101 @@
+{
+    "bottle": {
+        "broken_large": ["broken glass","broken bottle","broken", "damage", "damaged"],
+        "broken_small": ["broken glass","broken bottle","broken", "damage", "damaged"],
+        "contamination": ["foreign objects","contaminated","broken", "damage", "damaged"]
+    },
+    "cable": {
+        "bent_wire": ["bent wire","malformed wire","broken", "damage", "damaged"],
+        "cable_swap": ["cables with same colors","swapped cables","broken", "damage", "damaged"],
+        "cut_inner_insulation": ["cut insulation","damaged insulation","broken", "damage", "damaged"],
+        "cut_outer_insulation": ["cut insulation","damaged insulation","broken", "damage", "damaged"],
+        "missing_cable": ["empty cable","hole","missing cable","broken", "damage", "damaged"],
+        "missing_wire": ["empty cable","empty wire","hole","missing wire","broken", "damage", "damaged"],
+        "poke_insulation": ["damaged insulation","hole in insulation","poke insulation","broken", "damage", "damaged"]
+    },
+    "capsule": {
+        "crack": ["crack","cracked","cracked capsule","broken", "damage", "damaged"],
+        "faulty_imprint": ["faulty text","faulty imprint","broken", "damage", "damaged"],
+        "poke": ["hole","damaged capsule","poke","broken", "damage", "damaged"],
+        "scratch": ["scratch","scratched capsule","broken", "damage", "damaged"],
+        "squeeze": ["squeezed","squeezed capsule","broken", "damage", "damaged"]
+    },
+    "carpet": {
+        "color": ["color","colored strokes","stains","stain","broken", "damage", "damaged"],
+        "cut": ["hole","cut","cuts","tear","broken", "damage", "damaged"],
+        "hole": ["hole","cut","tear","broken", "damage", "damaged"],
+        "metal_contamination": ["metal contamination","foreign objects", "contaminated","broken", "damage", "damaged"],
+        "thread": ["thread","loose thread","broken", "damage", "damaged"]
+    },
+    "grid": {
+        "bent": ["bends","bent metal","bent","broken", "damage", "damaged"],
+        "broken": ["broken metal grid","damaged metal","broken", "damage", "damaged"],
+        "glue": ["glue drop","glue","liquid","broken", "damage", "damaged"],
+        "metal_contamination": ["excess metal","extra metal","metal contamination","broken", "damage", "damaged"],
+        "thread": ["thread","wool","broken", "damage", "damaged"]
+    },
+    "hazelnut": {
+        "crack": ["crack","cracked","error","hole","broken", "damage", "damaged"],
+        "cut": ["cut","error","hole","notch","scratch","split","broken", "damage", "damaged"],
+        "hole": ["crack","cracked","error","hole","holes","broken", "damage", "damaged"],
+        "print": ["white color","white print","white letters", "print", "letters", "letter", "text","color","broken", "damage", "damaged"]
+    },
+    "leather": {
+        "color": ["color","colored strokes","stains","broken", "damage", "damaged"],
+        "cut": ["scratch","split","cut","broken", "damage", "damaged"],
+        "fold": ["fold","crease","dents","broken", "damage", "damaged"],
+        "glue": ["glue drop","glue","liquid","broken", "damage", "damaged"],
+        "poke": ["poke","hole","dents","broken", "damage", "damaged"]
+    },
+    "metal_nut": {
+        "bent": ["bent","bent metal","broken", "damage", "damaged"],
+        "color": ["color","colored strokes","broken", "damage", "damaged"],
+        "flip": ["flip","flipped nut","broken", "damage", "damaged"],
+        "scratch": ["scratch","scratched","scratches","cut","broken", "damage", "damaged"]
+    },
+    "pill": {
+        "color": ["color", "colored dots","colored strokes","broken", "damage", "damaged"],
+        "contamination": ["contamination","excess material","foreign objects","broken", "damage", "damaged"],
+        "crack": ["crack","cracked","broken", "damage", "damaged"],
+        "faulty_imprint": ["faulty imprint","faulty text","broken", "damage", "damaged"],
+        "pill_type": ["pill type","wrong pill", "different pill","broken", "damage", "damaged"],
+        "scratch": ["scratch","scratched","scratches","cut","broken", "damage", "damaged"]
+    },
+    "screw": {
+        "manipulated_front": [ "damaged screw","malformed screw","broken", "damage", "damaged"],
+        "scratch_head": ["scratch","scratched screw","broken", "damage", "damaged"],
+        "scratch_neck": ["scratch","scratched screw","broken", "damage", "damaged"],
+        "thread_side": ["broken thread","damaged screw","damaged thread","broken", "damage", "damaged"],
+        "thread_top": ["broken thread","damaged screw","damaged thread","broken", "damage", "damaged"]
+    },
+    "tile": {
+        "crack": ["crack","cracked","cracks","broken", "damage", "damaged"],
+        "glue_strip": ["glue strip","tape","broken", "damage", "damaged"],
+        "gray_stroke": ["gray stroke","grey stroke","big gray stroke","broken", "damage", "damaged"],
+        "oil": ["oil","oil film","oil drops","oil drop", "liquid","broken", "damage", "damaged"],
+        "rough": ["rough","scratch","roughened surface","broken", "damage", "damaged"]
+    },
+    "toothbrush": {
+        "defective": ["defective","defective toothbrush","broken", "damage", "damaged"]
+    },
+    "transistor": {
+        "bent_lead": ["bent lead", "damaged lead","broken", "damage", "damaged"],
+        "cut_lead": ["damaged lead","cut lead","broken", "damage", "damaged"],
+        "damaged_case": ["damaged case","damaged transistor","broken", "damage", "damaged"],
+        "misplaced": ["misplaced transistor","missing transistor","broken", "damage", "damaged"]
+    },
+    "wood": {
+        "color": ["color","stains","color stains","broken", "damage", "damaged"],
+        "hole": ["hole","crack","drilled hole","broken", "damage", "damaged"],
+        "liquid": ["liquid","spilt liquid","drops","broken", "damage", "damaged"],
+        "scratch": ["scratch","scratches","scratched surface","broken", "damage", "damaged"]
+    },
+    "zipper": {
+        "broken_teeth": ["broken teeth","broken tooth","split teeth","broken zipper","faulty zipper","broken", "damage", "damaged"],
+        "fabric_border": ["damaged fabric","cut","broken", "damage", "damaged"],
+        "fabric_interior": ["damaged fabric","holes","damaged surface","broken", "damage", "damaged"],
+        "rough": ["rough teeth","rough tooth","rough edges","rough zipper","broken", "damage", "damaged"],
+        "split_teeth": ["split teeth","broken teeth","broken zipper","faulty zipper","broken", "damage", "damaged"],
+        "squeezed_teeth": ["squeezed teeth","broken teeth","broken zipper","broken", "damage", "damaged"]
+    }
+}

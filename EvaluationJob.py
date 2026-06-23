@@ -24,47 +24,6 @@ class EvaluationJob(Job):
         scores = []
         gt_labels = []
         
-        '''
-        prev_res = self.results
-        mask = prev_res["masks"]
-        anomaly_map = prev_res["anomaly_maps"]
-        score = prev_res["scores"]
-        pred_label = torch.tensor(1, dtype=int).to(device="cuda")
-        
-        if(mask.size(dim=0) > 1):
-            mask = torch.max(mask.to(torch.float), dim=0).values
-            anomaly_map = torch.max(anomaly_map, dim=0).values
-            score = torch.max(score, dim=0).values
-            print(">1")
-                
-        elif (mask.size(dim=0) == 1):
-            anomaly_map = anomaly_map.squeeze(0)
-            mask = mask.squeeze(0)
-            print("1")
-                
-        else:
-            mask = torch.zeros(1,1024,1024).to(device="cuda")
-            anomaly_map = torch.zeros(1,1024,1024).to(device="cuda")
-            pred_label = torch.tensor(0, dtype=int).to(device="cuda")
-            score = torch.zeros(1).to(device="cuda")
-            print("0")
-        
-        print(prev_res["image_path"])
-        print(self.prompt)
-        
-        item = ImageItem(
-            image=prev_res["image"],
-            gt_label=torch.tensor(1, dtype=int).to(device="cuda"),
-            image_path=prev_res["image_path"],
-            pred_label=pred_label,
-            pred_mask=mask,
-            pred_score=score,
-            gt_mask=prev_res["ground_truth"],
-            mask_path=prev_res["gt_path"],
-            anomaly_map = anomaly_map
-        )
-        
-        '''
         for entry in self.results:
             img = entry["image"]
             images.append(img)
@@ -101,30 +60,6 @@ class EvaluationJob(Job):
         x,y = x[-2], x[-4]  
         
         fixed_prompt = self.prompt.replace(" ", "_")  
-        
-        '''
-        image=torch.stack(images,dim=0).to(device="cuda")
-        gt_label=torch.stack(gt_labels,dim=0).to(device="cuda")
-        pred_label=torch.stack(pred_labels, dim=0).to(device="cuda")
-        pred_mask=torch.stack(masks,dim=0).to(device="cuda")
-        pred_score=torch.stack(scores,dim=0).to(device="cuda")
-        gt_mask=torch.stack(gt_masks,dim=0).to(device="cuda")
-        anomaly_map=torch.stack(anomaly_maps, dim=0).to(device="cuda")
-        
-        m = {"image": image, "gt_label": gt_label, "pred_label": pred_label, "pred_mask": pred_mask, "pred_score": pred_score, "gt_mask": gt_mask, "anomaly_map": anomaly_map,"image_paths": image_paths, "gt_mask_paths": gt_mask_paths}
-            
-        batch = ImageBatch(
-            image=image,
-            gt_label=gt_label,
-            image_path=image_paths,
-            pred_label=pred_label,
-            pred_mask=pred_mask,
-            pred_score=pred_score,
-            gt_mask=gt_mask,
-            mask_path=gt_mask_paths,
-            anomaly_map=anomaly_map
-        )
-        '''
         
         batch = ImageBatch(
             image=torch.stack(images,dim=0).to(device="cuda"),

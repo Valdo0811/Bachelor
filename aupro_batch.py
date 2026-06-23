@@ -5,13 +5,16 @@ import os
 from anomalib.metrics import AUROC, PRO, AUPRO
 
 folder = sys.argv[1] + "/*/*" + ".pt"
-f = open("runs.bat", "a")
+f = open("prompt.json", "a")
 subdirectories = [os.path.basename(path) for path in glob.glob(f'{sys.argv[1]}/*')]
-
+f.write("{\n")
 for dir in subdirectories:
         subs = [os.path.basename(path) for path in glob.glob(f'{sys.argv[1]}/{dir}/*')]
+        f.write(f"\"{dir}\": " + "{\n")
         for sub in subs:
-                f.write("python multi_figure_auroc.py " + sys.argv[1] + "/" + dir + "/" + sub + "\n")
+                f.write(f"\"{sub}\": [\"broken\", \"damage\", \"damaged\"],\n")
+        f.write("},\n")
+f.write("}\n")
 
 #subsubs = [os.path.(path) for path in glob.glob(f'{sys.argv[1]}/{subs}/*') for subs in subdirectories]
 #print(subdirectories) 
