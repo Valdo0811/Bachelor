@@ -24,12 +24,12 @@ for filename in sorted(glob.glob(folder_path)):
         
         prompts.append(x)
         res = torch.load(filename, weights_only=False)
-        '''
+        
         im_auroc[x] = res["im_auroc"]
         pix_auroc[x] = res["pix_auroc"]
         im_auroc_res[x] = res["im_auroc_res"]
         pix_auroc_res[x] = res["pix_auroc_res"]
-        '''
+        
         aupro[x] = res["aupro"]
         aupro_res[x] = res["aupro_res"]
         
@@ -39,7 +39,7 @@ for filename in sorted(glob.glob(folder_path)):
 xlim = (0.0, 1.0)
 ylim = (0.0, 1.0)
 
-'''
+
 im_auroc_fig, im_auroc_axs = plt.subplots()    
 
 im_auroc_sorted = []
@@ -155,7 +155,6 @@ del pix_auroc_fig
 del pix_auroc_axs    
 del pix_auroc_sorted
 
-'''
 
 aupro_fig, aupro_axs = plt.subplots()    
 
