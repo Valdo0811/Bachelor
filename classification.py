@@ -1,0 +1,44 @@
+import glob
+import torch
+import sys
+import os
+from anomalib.metrics import AUROC, PRO, AUPRO
+import matplotlib.pyplot as plt
+from collections import OrderedDict
+import pandas as pd
+import dataframe_image as dfi
+
+from PIL import Image, ImageDraw, ImageFont
+from IPython.display import display
+
+
+averages = torch.load("figures/table.pt", weights_only=False)
+
+good = []
+mid = []
+bad = []
+cat = ""
+for entry in averages:
+    cur_cat = entry[0]
+    cat_err_type = cur_cat
+    if cur_cat != cat:
+        cat = cur_cat
+    else:
+        cat_err_type = cat + "/" + entry[1]
+    average = float(entry[4])
+    
+    
+    if average < 0.7:
+        bad.append(cat_err_type)
+    elif average > 0.95:
+        good.append(cat_err_type)
+    else:
+        mid.append(cat_err_type)
+
+df = pd.DataFrame([bad, mid, good], index=0, columns=["bad score (< 0.70)", "decent score (0.70 - 0.95)", "good score (>0.95)"])
+dfi.export(df, "figures/classification.png")
+        
+print(f"bad: {len(bad)}")
+print(f"mid: {len(mid)}")
+print(f"good: {len(good)}")
+print(good)
