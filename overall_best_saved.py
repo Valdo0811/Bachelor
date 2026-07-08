@@ -6,7 +6,7 @@ from anomalib.metrics import AUROC, PRO, AUPRO
 import matplotlib.pyplot as plt
 from collections import OrderedDict
 
-im_auroc_sorted = torch.load("figures/best.pt", weights_only=False)
+im_auroc_sorted = torch.load("figures/best_pix_aur.pt", weights_only=False)
 
 xlim = (0.0, 1.0)
 ylim = (0.0, 1.0)
@@ -54,9 +54,9 @@ im_auroc_fig.set_layout_engine("constrained")
 ax1.set_ylim(ylim)
 ax2.set_ylim(ylim)
 ax3.set_ylim(ylim)
-ax3.set_xlabel("Error-Type/Prompt")
+ax3.set_xlabel("Category/Error-Type/Prompt")
 ax2.set_ylabel("True Positive Rate")
 ax1.legend(loc="upper right", fontsize="x-small")  
 ax1.set_title(f"Best results per Category")
 
-plt.savefig(f"figures/best.png")
+plt.savefig(f"figures/best_pix_aur.png")

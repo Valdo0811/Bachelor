@@ -42,7 +42,7 @@ for dir in subdirectories:
                 x = x[-1].split('.')
                 prompt = x[0]
                 
-                
+                '''
                 if val != 0.5:
                     nr_of_prompts = nr_of_prompts + 1
                     sum = sum + val
@@ -50,40 +50,18 @@ for dir in subdirectories:
                 '''    
                 nr_of_prompts = nr_of_prompts + 1
                 sum = sum + val
-                '''
+                
                 if cat_err in prompts:
             
                     if cat_bests[cat_err] <= val:
                         cat_bests[cat_err] = val
                         prompts[cat_err] = prompt
                     
-                    '''
-                    if im_auroc_res[cat_err] <= res["im_auroc_res"]:
-                        im_auroc_res[cat_err] = res["im_auroc_res"]
-                        im_auroc[cat_err] = res["im_auroc"]
-                        im_auroc_prompts[cat_err] = prompt
-                    
-                    if pix_auroc_res[cat_err] <= res["pix_auroc_res"]:
-                        pix_auroc_res[cat_err] = res["pix_auroc_res"]
-                        pix_auroc[cat_err] = res["pix_auroc"]
-                        pix_auroc_prompts[cat_err] = prompt
-                        
-                    '''
                     
                 else:   
                     cat_bests[cat_err] = val
                     prompts[cat_err] = prompt
                     
-                    '''
-                    im_auroc_res[cat_err] = res["im_auroc_res"]
-                    im_auroc[cat_err] = res["im_auroc"]
-                    pix_auroc_res[cat_err] = res["pix_auroc_res"]
-                    pix_auroc[cat_err] = res["pix_auroc"]
-                    
-                    im_auroc_prompts[cat_err] = prompt
-                    pix_auroc_prompts[cat_err] = prompt
-                    aupro_prompts[cat_err] = prompt
-                    '''
         if nr_of_prompts == 0:
             average = 0.5
         else:
@@ -103,7 +81,7 @@ for key in bests:
     for error_type in categ:
         if error_type == "average":
             continue
-        res = {"value": categ[error_type], "label": f"{error_type}: {categ[error_type]:0.2f}"}
+        res = {"value": categ[error_type], "label": f"{error_type}/{prompts[error_type]}: {categ[error_type]:0.2f}"}
         val = categ[error_type]
         added = False
         
@@ -155,7 +133,7 @@ for key in bests:
         im_auroc_sorted.append(im_aur)
         
 
-torch.save(im_auroc_sorted, f'figures/best_found.pt')
+torch.save(im_auroc_sorted, f'figures/best.pt')
 
 
 xlim = (0.0, 1.0)
@@ -204,7 +182,7 @@ im_auroc_fig.set_layout_engine("constrained")
 ax1.set_ylim(ylim)
 ax2.set_ylim(ylim)
 ax3.set_ylim(ylim)
-ax3.set_xlabel("Error-Type/Prompt")
+ax3.set_xlabel("Category/Error-Type/Prompt")
 ax2.set_ylabel("True Positive Rate")
 ax1.legend(loc="upper right", fontsize="x-small")  
 ax1.set_title(f"Best results per Category")

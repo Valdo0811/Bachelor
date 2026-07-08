@@ -1,0 +1,31 @@
+Einleitung
+
+
+Ähnliche Arbeiten mit SAM-3
+    welche Ansätze wurden versucht
+    wie gut performen diese
+    Unterschiede zu dieser Arbeiten
+    Mögliche Vorteile der Methodik
+
+SAM-3 kurze Übersicht?
+
+Methodik
+    was wurde gemacht
+    einzelne Schritte
+    eventuell welche metriken verwendet werden sollen?
+
+Ergebnisse
+    beste Ergebnisse
+    Durchschnitt pro Klassen/Fehlertypen
+    Einteilung schlecht/mittel/gut
+    visuelle Beispiele für gute/schlechte Ergebnisse
+    eventuelle interessante/überraschende Ergebnisse
+
+Diskussion
+    Ergebnisse zufriedenstellend?
+    Vergleich mit Ähnlichen Forschungen
+    mögliche Verbesserungsideen für prompts/Methodik
+    mögliche Einsatzgebiete
+    Vor/Nachteile der Methodik
+
+Fazit
