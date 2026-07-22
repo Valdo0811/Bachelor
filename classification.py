@@ -12,7 +12,7 @@ from PIL import Image, ImageDraw, ImageFont
 from IPython.display import display
 
 
-averages = torch.load("figures/table_found.pt", weights_only=False)
+averages = torch.load("figures/table.pt", weights_only=False)
 
 good = []
 mid = []
@@ -23,9 +23,10 @@ for entry in averages:
     cat_err_type = cur_cat
     if (cur_cat != cat) and (cur_cat != ""):
         cat = cur_cat
+        continue
     else:
         cat_err_type = cat + "/" + entry[1]
-    average = float(entry[3])
+    average = float(entry[4])
     
     
     if average < 0.7:
@@ -59,7 +60,7 @@ for i in range(length):
     data.append(row)
         
 df = pd.DataFrame(data, columns=["bad score (< 0.70)", "decent score (0.70 - 0.95)", "good score (>0.95)"])
-dfi.export(df, "figures/classification_found.png")
+dfi.export(df, "figures/classification.png")
         
 print(f"bad: {len(bad)}")
 print(f"mid: {len(mid)}")

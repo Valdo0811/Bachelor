@@ -60,16 +60,10 @@ for dir in subdirectories:
                 x = x[-1].split('.')
                 prompt = x[0]
                 
-                
-                if val != 0.5:
-                    nr_of_prompts_err_type = nr_of_prompts_err_type + 1
-                    sum_err_type = sum_err_type + val
-                    nr_of_prompts_cat = nr_of_prompts_cat + 1
-                    sum_cat = sum_cat + val
-                '''    
+                    
                 nr_of_prompts_err_type = nr_of_prompts_err_type + 1
                 sum_err_type = sum_err_type + val
-                '''
+                
                 
                 
                 if val >= err_type_best:
@@ -97,9 +91,9 @@ for dir in subdirectories:
         
 print(rows)
 headers = ["category", "error-type", "number of prompts", "average image auroc", "best image auroc", "best prompt"]
-torch.save(rows, "figures/table_found.pt")
+torch.save(rows, "figures/table.pt")
 df = pd.DataFrame(rows, columns=headers)
-dfi.export(df, "figures/table_found.png")
+dfi.export(df, "figures/table.png")
 
 
 

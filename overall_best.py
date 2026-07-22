@@ -27,46 +27,34 @@ bests = {}
 folder = sys.argv[1] + "/*/*" + ".pt"
 subdirectories = [os.path.basename(path) for path in glob.glob(f'{sys.argv[1]}/*')]
 for dir in subdirectories:
-        sum = 0
         nr_of_prompts = 0
         subs = [os.path.basename(path) for path in glob.glob(f'{sys.argv[1]}/{dir}/*')]
         cat_bests = {}
+        cat_best = 0
         for sub in subs:
             cat_err = dir + "/" + sub
             for filename in sorted(glob.glob(f'{sys.argv[1]}/{dir}/{sub}/*.pt')):
                 res = torch.load(filename, weights_only=False)
-                val = res["im_auroc_res"]
+                val = res["im_auroc_res"].item()
                 del res
                 
                 x = filename.split('\\')
                 x = x[-1].split('.')
                 prompt = x[0]
-                
-                '''
-                if val != 0.5:
-                    nr_of_prompts = nr_of_prompts + 1
-                    sum = sum + val
-                   
-                '''    
+                 
                 nr_of_prompts = nr_of_prompts + 1
-                sum = sum + val
+                if cat_best <= val:
+                        cat_best = val
                 
                 if cat_err in prompts:
             
                     if cat_bests[cat_err] <= val:
                         cat_bests[cat_err] = val
                         prompts[cat_err] = prompt
-                    
-                    
                 else:   
                     cat_bests[cat_err] = val
                     prompts[cat_err] = prompt
-                    
-        if nr_of_prompts == 0:
-            average = 0.5
-        else:
-            average = sum / nr_of_prompts
-        cat_bests["average"] = average
+        cat_bests["best"] = cat_best            
         bests[dir] = cat_bests
 
 
@@ -79,9 +67,14 @@ for key in bests:
     categ = bests[key]
     error_types_sorted = []
     for error_type in categ:
-        if error_type == "average":
+        if error_type == "best":
             continue
-        res = {"value": categ[error_type], "label": f"{error_type}/{prompts[error_type]}: {categ[error_type]:0.2f}"}
+        
+        if error_type == "carpet/color":
+            res = {"value": categ[error_type], "label": f"{error_type}/{prompts[error_type]}"}
+        else:
+            type = error_type.split('/')[-1]
+            res = {"value": categ[error_type], "label": f"{type}/{prompts[error_type]}"}
         val = categ[error_type]
         added = False
         
@@ -105,18 +98,18 @@ for key in bests:
         else:
             error_types_sorted.append(res)
     
-    average = bests[key]["average"]
-    if len(error_types_sorted) > 3:
-        error_types_sorted = error_types_sorted[-3:]
-    print(len(error_types_sorted))
-    im_aur = {"average": average, "values": error_types_sorted, "label": f"{key} Ø: {average:0.2f}", "class": key}
+    cat_best = categ["best"]
+    #if len(error_types_sorted) > 5:
+    #    error_types_sorted = error_types_sorted[-5:]
+    #print(len(error_types_sorted))
+    im_aur = {"max": cat_best, "values": error_types_sorted, "class": key}
     added = False
     
     if len(im_auroc_sorted) > 0:
         for i in range(len(im_auroc_sorted)):
-            if im_auroc_sorted[i]["average"] >= average:
+            if im_auroc_sorted[i]["max"] >= cat_best:
                 if len(im_auroc_sorted) > i + 1:
-                    if im_auroc_sorted[i+1]["average"] <= average:
+                    if im_auroc_sorted[i+1]["max"] <= cat_best:
                         im_auroc_sorted.insert(i+1, im_aur)
                         added = True
                     else:
@@ -133,9 +126,9 @@ for key in bests:
         im_auroc_sorted.append(im_aur)
         
 
-torch.save(im_auroc_sorted, f'figures/best.pt')
+torch.save(im_auroc_sorted, f'figures/boxplot_new.pt')
 
-
+'''
 xlim = (0.0, 1.0)
 ylim = (0.0, 1.0)
 
@@ -155,22 +148,13 @@ for entry in im_auroc_sorted:
     for val in entry["values"]:
         p = ax.bar(
             val["label"],
-            val["value"].item(),
+            val["value"],
             color=colors[counter],
+            label=entry["class"],
             figure=im_auroc_fig,
             width=0.5
         )
         ax.bar_label(p, label_type="center", fmt="%.2f")
-    
-    p = ax.bar(
-        entry["label"],
-        entry["average"].item(),
-        color=colors[counter],
-        figure=im_auroc_fig,
-        label=entry["class"],
-        width=0.5
-    )
-    ax.bar_label(p, label_type="center", fmt="%.2f")
     counter = counter + 1
    
 #im_auroc_axs.set_xlim(xlim)
@@ -183,12 +167,12 @@ ax1.set_ylim(ylim)
 ax2.set_ylim(ylim)
 ax3.set_ylim(ylim)
 ax3.set_xlabel("Category/Error-Type/Prompt")
-ax2.set_ylabel("True Positive Rate")
+ax2.set_ylabel("Image AUROC Score")
 ax1.legend(loc="upper right", fontsize="x-small")  
 ax1.set_title(f"Best results per Category")
 
-plt.savefig(f"figures/best.png")
-
+plt.savefig(f"figures/best_new.png")
+'''
 
 
 
