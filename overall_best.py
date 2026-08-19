@@ -6,6 +6,8 @@ from anomalib.metrics import AUROC, PRO, AUPRO
 import matplotlib.pyplot as plt
 from collections import OrderedDict
 
+import pandas as pd
+
 #folder_path = sys.argv[1] + "/*/*/*" + ".pt"
 
 pix_auroc_prompts = {}
@@ -23,6 +25,7 @@ prompts = {}
 #category = split_folder_path[-3]
 bests = {}
 
+data = []
 
 folder = sys.argv[1] + "/*/*" + ".pt"
 subdirectories = [os.path.basename(path) for path in glob.glob(f'{sys.argv[1]}/*')]
@@ -30,6 +33,7 @@ for dir in subdirectories:
         nr_of_prompts = 0
         subs = [os.path.basename(path) for path in glob.glob(f'{sys.argv[1]}/{dir}/*')]
         cat_bests = {}
+        cat_worsts = {}
         cat_best = 0
         for sub in subs:
             cat_err = dir + "/" + sub
@@ -51,14 +55,26 @@ for dir in subdirectories:
                     if cat_bests[cat_err] <= val:
                         cat_bests[cat_err] = val
                         prompts[cat_err] = prompt
+                    
+                    if cat_worsts[cat_err] >= val:
+                        cat_worsts[cat_err] = val
+                        
                 else:   
+                    cat_worsts[cat_err] = val
                     cat_bests[cat_err] = val
                     prompts[cat_err] = prompt
+            
+            data.append([dir, sub+"/"+prompts[cat_err], prompts[cat_err], cat_bests[cat_err], cat_worsts[cat_err]])
+                    
+                
         cat_bests["best"] = cat_best            
         bests[dir] = cat_bests
 
+df = pd.DataFrame(data=data, columns=["category", "Errortype/Prompt", "prompt", "AUROC Score", "min"])
+print(df)
+torch.save(df, "figures/df.pt")
 
-
+'''
 im_auroc_sorted = []
 
 bests_sorted = []
@@ -70,7 +86,7 @@ for key in bests:
         if error_type == "best":
             continue
         
-        if error_type == "carpet/color":
+        if error_type == "carpet/color" or error_type == "pill/scratch":
             res = {"value": categ[error_type], "label": f"{error_type}/{prompts[error_type]}"}
         else:
             type = error_type.split('/')[-1]
@@ -126,8 +142,8 @@ for key in bests:
         im_auroc_sorted.append(im_aur)
         
 
-torch.save(im_auroc_sorted, f'figures/boxplot_new.pt')
-
+torch.save(im_auroc_sorted, f'figures/overall_best.pt')
+'''
 '''
 xlim = (0.0, 1.0)
 ylim = (0.0, 1.0)
