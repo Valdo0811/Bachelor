@@ -29,9 +29,9 @@ for entry in averages:
     average = float(entry[4])
     
     
-    if average < 0.7:
+    if average <= 0.7:
         bad.append(cat_err_type)
-    elif average > 0.95:
+    elif average > 0.85:
         good.append(cat_err_type)
     else:
         mid.append(cat_err_type)
@@ -59,7 +59,10 @@ for i in range(length):
     
     data.append(row)
         
-df = pd.DataFrame(data, columns=["bad score (< 0.70)", "decent score (0.70 - 0.95)", "good score (>0.95)"])
+df = pd.DataFrame(data, columns=["bad score (<= 0.70)", "decent score (0.70 - 0.85)", "good score (>0.85)"])
+
+print(df.to_latex(index=True
+                  ))
 dfi.export(df, "figures/classification.png")
         
 print(f"bad: {len(bad)}")

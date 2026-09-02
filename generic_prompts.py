@@ -57,14 +57,16 @@ comparison = (
     .sort_values("damaged", ascending=False)
 )
 
-print(df[df["Prompt"].isin(["damaged", "damage"])]
-    .groupby("Prompt", as_index=False)["AUROC Score"]
-    .mean())
+#print(df[df["Prompt"].isin(["damaged", "damage"])]
+#    .groupby("Prompt", as_index=False)["AUROC Score"]
+#    .mean())
 
 #comp = comparison.style.set_caption("Count of errortypes with given Image-AUROC Score")
-dfi.export(comparison.iloc[:20], "figures/damage_vs_damaged.png")
+#dfi.export(comparison.iloc[:20], "figures/damage_vs_damaged.png")
 
-
+#print(df[["Category", "Errortype", "Prompt", "AUROC Score"]].iloc[:25].to_latex(index=False,
+#                  float_format="{:.2f}".format,
+#                  ))
 
 
 
@@ -82,8 +84,11 @@ for prompt in ["broken", "damage", "damaged"]:
     data.append(row)
 
 df_2 = pd.DataFrame(data=data, columns=columns)
-df_2 = df_2.style.set_caption("Count of errortypes with given Image-AUROC Score").hide()
+print(df_2.to_latex(index=False,
+                  float_format="{:.2f}".format,
+                  ))
+#df_2 = df_2.style.set_caption("Count of errortypes with given Image-AUROC Score").hide()
 
-dfi.export(df_2, "figures/generics_counts.png")
+#dfi.export(df_2, "figures/generics_counts.png")
 
 
