@@ -92,13 +92,12 @@ class EvaluationJob(Job):
         
         image_auroc = AUROC(fields=["pred_score", "gt_label"], prefix="image")
         
-        #pro = PRO(fields=["anomaly_map", "gt_mask"])
+        
         aupro = AUPRO(fields=["anomaly_map", "gt_mask"])
         
-        #for item in batch:
+        
         pixel_auroc.update(batch)
         image_auroc.update(batch)
-        #pro.update(batch)
         aupro.update(batch)
         
         del batch   
