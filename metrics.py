@@ -1,9 +1,6 @@
 import sys
-import glob
 import torch
-import json
-from anomalib.data.dataclasses.torch import ImageBatch
-from anomalib.metrics import AUROC, PRO, AUPRO
+from anomalib.metrics import AUROC, AUPRO
 
 file = sys.argv[1]
     

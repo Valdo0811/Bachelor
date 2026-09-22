@@ -1,8 +1,9 @@
 import torch
 import json
 import matplotlib as plt
-from anomalib.metrics import AUROC, PRO, AUPRO
-from anomalib.data.dataclasses.torch import ImageBatch, ImageItem
+import pandas as pd
+from anomalib.metrics import AUROC, AUPRO
+from anomalib.data.dataclasses.torch import ImageBatch
 from anomalib.pipelines.components import Job
 
 class EvaluationJob(Job):
@@ -73,9 +74,7 @@ class EvaluationJob(Job):
             anomaly_map=torch.stack(anomaly_maps, dim=0).to(device="cuda"),
         )
         
-        torch.save(batch, f'predictions/{y}/{x}/{fixed_prompt}.pt')
-        
-        #return
+        #torch.save(batch, f'predictions/{y}/{x}/{fixed_prompt}.pt')
         
         del images
         del gt_labels
@@ -110,7 +109,6 @@ class EvaluationJob(Job):
         aupro_res = aupro.compute()
         print(aupro_res)
         
-        #metrics = {"image_auroc": image_auroc, "pixel_auroc": pixel_auroc}
         metrics = {"image_auroc": image_auroc, "pixel_auroc": pixel_auroc, "aupro": aupro}
         
         torch.save(metrics, f'metrics/{y}/{x}/{fixed_prompt}.pt')
@@ -137,16 +135,18 @@ class EvaluationJob(Job):
         pix_aur_fig.savefig(f'figures/pixel_auroc/{y}/{x}/{fixed_prompt}')
         
         
-        
-        
-        #return {"category": x + "_" + y, "prompt": self.prompt, "pixel_auroc": pixel_auroc_res.item(), "image_auroc": image_auroc_res.item()}
         return {"category": x + "_" + y, "prompt": self.prompt, "pixel_auroc": pixel_auroc_res.item(), "image_auroc": image_auroc_res.item(), "aupro": aupro_res.item()}
     
     @staticmethod
     def collect(results: list[dict]) -> list[dict]:
-        return results
+        output: dict = {}
+        for key in results[0]:
+            output[key] = []
+        for result in results:
+            for key, value in result.items():
+                output[key].append(value)
+        return pd.DataFrame(output)
     
     @staticmethod
-    def save(results: list[dict]) -> None:
-        with open("results.json", 'a') as f:
-            json.dump(results, f)
+    def save(results: pd.DataFrame) -> None:
+        results.to_csv("results.csv", index=False, mode="a")
