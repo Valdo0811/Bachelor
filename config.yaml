@@ -1,0 +1,7 @@
+infer:
+  folder_path: "dataset/mvtec_anomaly_detection/zipper/test/broken_teeth"
+  gt_path: "dataset/mvtec_anomaly_detection/zipper/ground_truth/broken_teeth"
+  image_type: ".png"
+  good_pictures: "dataset/mvtec_anomaly_detection/zipper/test/good"
+  prompts: ["broken teeth"]
+evaluate:

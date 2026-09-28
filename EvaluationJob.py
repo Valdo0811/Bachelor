@@ -58,7 +58,7 @@ class EvaluationJob(Job):
         
         x = image_paths[0].replace('\\', '/')   
         x = x.split('/')
-        x,y = x[-2], x[-4]  
+        error_type,category = x[-2], x[-4]  
         
         fixed_prompt = self.prompt.replace(" ", "_")  
         
@@ -111,7 +111,7 @@ class EvaluationJob(Job):
         
         metrics = {"image_auroc": image_auroc, "pixel_auroc": pixel_auroc, "aupro": aupro}
         
-        torch.save(metrics, f'metrics/{y}/{x}/{fixed_prompt}.pt')
+        torch.save(metrics, f'metrics/{category}/{error_type}/{fixed_prompt}.pt')
         
         aupro_fig, title = aupro.generate_figure()
         
@@ -119,23 +119,23 @@ class EvaluationJob(Job):
         
         pix_aur_fig, title = pixel_auroc.generate_figure()
         
-        aupro_title = "AUPRO \n Category: " + x + "_" + y + "  Prompt: " + fixed_prompt
+        aupro_title = "AUPRO \n Category: " + error_type + "_" + category + "  Prompt: " + fixed_prompt
         aupro_fig.suptitle(aupro_title)
         aupro_fig.set_layout_engine("tight")
-        aupro_fig.savefig(f'figures/aupro/{y}/{x}/{fixed_prompt}')
+        aupro_fig.savefig(f'figures/aupro/{category}/{error_type}/{fixed_prompt}')
         
-        im_aur_title = "Image AUROC \n Category: " + x + "_" + y + "  Prompt: " + fixed_prompt
+        im_aur_title = "Image AUROC \n Category: " + error_type + "_" + category + "  Prompt: " + fixed_prompt
         im_aur_fig.suptitle(im_aur_title)
         im_aur_fig.set_layout_engine("tight")
-        im_aur_fig.savefig(f'figures/image_auroc/{y}/{x}/{fixed_prompt}')
+        im_aur_fig.savefig(f'figures/image_auroc/{category}/{error_type}/{fixed_prompt}')
         
-        pix_aur_title = "Pixel AUROC \n Category: " + x + "_" + y + "  Prompt: " + fixed_prompt
+        pix_aur_title = "Pixel AUROC \n Category: " + error_type + "_" + category + "  Prompt: " + fixed_prompt
         pix_aur_fig.suptitle(pix_aur_title)
         pix_aur_fig.set_layout_engine("tight")
-        pix_aur_fig.savefig(f'figures/pixel_auroc/{y}/{x}/{fixed_prompt}')
+        pix_aur_fig.savefig(f'figures/pixel_auroc/{category}/{error_type}/{fixed_prompt}')
         
         
-        return {"category": x + "_" + y, "prompt": self.prompt, "pixel_auroc": pixel_auroc_res.item(), "image_auroc": image_auroc_res.item(), "aupro": aupro_res.item()}
+        return {"category": category, "error_type": error_type, "prompt": self.prompt, "pixel_auroc": pixel_auroc_res.item(), "image_auroc": image_auroc_res.item(), "aupro": aupro_res.item()}
     
     @staticmethod
     def collect(results: list[dict]) -> list[dict]:
@@ -149,4 +149,5 @@ class EvaluationJob(Job):
     
     @staticmethod
     def save(results: pd.DataFrame) -> None:
-        results.to_csv("results.csv", index=False, mode="a")
+        with open(file="results.csv", mode='a', newline='') as file:
+            results.to_csv(file, index=False, header=False, )

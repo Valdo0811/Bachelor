@@ -1,16 +1,6 @@
-import glob
 import torch
-import sys
-import os
-from anomalib.metrics import AUROC, PRO, AUPRO
-import matplotlib.pyplot as plt
-from collections import OrderedDict
 import pandas as pd
 import dataframe_image as dfi
-
-from PIL import Image, ImageDraw, ImageFont
-from IPython.display import display
-
 
 averages = torch.load("figures/table.pt", weights_only=False)
 
