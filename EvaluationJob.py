@@ -91,7 +91,6 @@ class EvaluationJob(Job):
         
         image_auroc = AUROC(fields=["pred_score", "gt_label"], prefix="image")
         
-        
         aupro = AUPRO(fields=["anomaly_map", "gt_mask"])
         
         
@@ -103,11 +102,8 @@ class EvaluationJob(Job):
         
         pixel_auroc_res = pixel_auroc.compute()
         image_auroc_res = image_auroc.compute()
-        
-        print(pixel_auroc_res)
-        print(image_auroc_res)
         aupro_res = aupro.compute()
-        print(aupro_res)
+        
         
         metrics = {"image_auroc": image_auroc, "pixel_auroc": pixel_auroc, "aupro": aupro}
         
@@ -135,7 +131,7 @@ class EvaluationJob(Job):
         pix_aur_fig.savefig(f'figures/pixel_auroc/{category}/{error_type}/{fixed_prompt}')
         
         
-        return {"category": category, "error_type": error_type, "prompt": self.prompt, "pixel_auroc": pixel_auroc_res.item(), "image_auroc": image_auroc_res.item(), "aupro": aupro_res.item()}
+        return {"category": category, "error_type": error_type, "error_type/prompt": error_type + "/" + fixed_prompt, "prompt": fixed_prompt, "pixel_auroc": pixel_auroc_res.item(), "image_auroc": image_auroc_res.item(), "aupro": aupro_res.item()}
     
     @staticmethod
     def collect(results: list[dict]) -> list[dict]:

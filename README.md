@@ -2,7 +2,9 @@
 
 create a conda env from the environment.yml file with
 
+'''
 conda env create -f environment.yml
+'''
 
 switch to the env with
 
@@ -25,7 +27,19 @@ pip install git+https://github.com/ronghanghu/cc_torch.git
 
 Request access to the Hugging Face repo to download the checkpoints, see: https://github.com/facebookresearch/sam3#getting-started
 
+# Prompts
+
+Enter the prompts you want to use for each error type in the prompts.json file.
+
+If you want to use generic prompts for every error type, you can edit them in generate_generic_prompts.py and run it. Do this before adding the specific ones!
+
+
 
 # Run the framework
 
-use python experiment.py --config config.yaml
+For single runs use 
+
+python experiment.py --config config.yaml
+
+To run every prompt use
+

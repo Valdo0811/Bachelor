@@ -42,7 +42,10 @@ df = pd.DataFrame(data=data, columns=["Category", "Category/Errortype", "Errorty
 torch.save(df, "figures/generics.pt")
 '''
 
-df = torch.load("figures/generics.pt", weights_only=False)
+df = pd.read_csv("results.csv")
+
+#df = torch.load("figures/generics.pt", weights_only=False)
+df = df[df["prompt"]]
 
 df = df.sort_values(
     ["AUROC Score"],

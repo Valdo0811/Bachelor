@@ -1,15 +1,9 @@
-import sys
-import glob
-import torch
-import os
-from anomalib.metrics import AUROC, PRO, AUPRO
 import json
 
 with open('prompts.json', 'r') as file:
     data = json.load(file)
 
 f = open("bat_files/run_inference_pipelines.bat", "w")
-metrics = open("bat_files/run_metrics.bat", "w")
 
 base_infer_dict = {
         "folder_path": "",
@@ -37,6 +31,5 @@ for key in data:
             base_infer_dict["prompts"] = [f'{prompt}']
             base_dict["infer"] = base_infer_dict
             config.write(str(base_dict))
-            metrics.write(f'python metrics.py predictions/{key}/{k}/{prompt}.pt\n')
             f.write(f'python experiment.py --config configs/{key}_{k}_{prompt}.yaml\n')
 

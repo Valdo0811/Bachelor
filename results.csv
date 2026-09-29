@@ -1,1 +1,1 @@
-category,error_type,prompt,pixel_auroc,image_auroc,aupro
+category,error_type,error_type/prompt,prompt,pixel_auroc,image_auroc,aupro
