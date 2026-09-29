@@ -72,6 +72,10 @@ after you have all the results you want.
 
 You can run
 
+```
+python table.py
+```
+
 to create a table listing all the prompts used per errortype.
 
 To test and visualize single images you can use the test.ipynb notebook.
