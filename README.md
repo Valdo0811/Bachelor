@@ -2,9 +2,9 @@
 
 create a conda env from the environment.yml file with
 
-'''
+```
 conda env create -f environment.yml
-'''
+```
 
 switch to the env with
 
