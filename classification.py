@@ -2,60 +2,18 @@ import torch
 import pandas as pd
 import dataframe_image as dfi
 
-averages = torch.load("figures/table.pt", weights_only=False)
+df = pd.read_csv("results.csv")
 
-good = []
-mid = []
-bad = []
-cat = ""
-for entry in averages:
-    cur_cat = entry[0]
-    cat_err_type = cur_cat
-    if (cur_cat != cat) and (cur_cat != ""):
-        cat = cur_cat
-        continue
-    else:
-        cat_err_type = cat + "/" + entry[1]
-    average = float(entry[4])
-    
-    
-    if average <= 0.7:
-        bad.append(cat_err_type)
-    elif average > 0.85:
-        good.append(cat_err_type)
-    else:
-        mid.append(cat_err_type)
+good = df[df["image_auroc"] > 0.85]["error_type/prompt"]
+mid = df[(df["image_auroc"] > 0.70) & (df["image_auroc"] <= 0.85)]["error_type/prompt"]
+bad = df[df["image_auroc"] <= 0.70]["error_type/prompt"]
 
-length = max(len(good), len(bad), len(mid))
-
-data = []
-
-for i in range(length):
-    row = []
-    if i >= len(bad):
-        row.append("")
-    else:
-        row.append(bad[i])
-      
-    if i >= len(mid):
-        row.append("")
-    else:
-        row.append(mid[i])  
-        
-    if i >= len(good):
-        row.append("")
-    else:
-        row.append(good[i])
-    
-    data.append(row)
-        
-df = pd.DataFrame(data, columns=["bad score (<= 0.70)", "decent score (0.70 - 0.85)", "good score (>0.85)"])
+df = pd.DataFrame({
+    "bad score (<= 0.70)": bad.reset_index(drop=True),
+    "decent score (0.70 - 0.85)": mid.reset_index(drop=True),
+    "good score (>0.85)": good.reset_index(drop=True),
+})
 
 print(df.to_latex(index=True
                   ))
 dfi.export(df, "figures/classification.png")
-        
-print(f"bad: {len(bad)}")
-print(f"mid: {len(mid)}")
-print(f"good: {len(good)}")
-print(good)

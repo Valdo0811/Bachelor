@@ -107,7 +107,7 @@ class EvaluationJob(Job):
         
         metrics = {"image_auroc": image_auroc, "pixel_auroc": pixel_auroc, "aupro": aupro}
         
-        torch.save(metrics, f'metrics/{category}/{error_type}/{fixed_prompt}.pt')
+        #torch.save(metrics, f'metrics/{category}/{error_type}/{fixed_prompt}.pt')
         
         aupro_fig, title = aupro.generate_figure()
         

@@ -3,7 +3,7 @@ import json
 with open('prompts.json', 'r') as file:
     data = json.load(file)
 
-f = open("bat_files/run_inference_pipelines.bat", "w")
+f = open("run_inference_pipelines.bat", "w")
 
 base_infer_dict = {
         "folder_path": "",

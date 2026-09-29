@@ -1,0 +1,11 @@
+infer:
+  #                                             edit category and errortype, keep /test/
+  folder_path: "dataset/mvtec_anomaly_detection/toothbrush/test/defective"
+  #                                         edit category and errortype, keep /ground_truth/
+  gt_path: "dataset/mvtec_anomaly_detection/toothbrush/ground_truth/defective"
+  image_type: ".png"
+  #                                               edit only category
+  good_pictures: "dataset/mvtec_anomaly_detection/toothbrush/test/good"
+  #         enter your prompt(s) here
+  prompts: ["defective"]
+evaluate:

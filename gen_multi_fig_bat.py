@@ -1,8 +1,6 @@
 import sys
 import glob
-import torch
 import os
-from anomalib.metrics import AUROC, PRO, AUPRO
 
 folder = sys.argv[1] + "/*/*" + ".pt"
 f = open("multi_fig_run.bat", "w")

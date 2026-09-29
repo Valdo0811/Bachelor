@@ -1,2 +1,2 @@
 python generate_configs.py
-bat_files/run_inference_pipelines.bat
+run_inference_pipelines.bat

@@ -1,7 +1,0 @@
-infer:
-  folder_path: "dataset/mvtec_anomaly_detection/toothbrush/test/defective"
-  gt_path: "dataset/mvtec_anomaly_detection/toothbrush/ground_truth/defective"
-  image_type: ".png"
-  good_pictures: "dataset/mvtec_anomaly_detection/toothbrush/test/good"
-  prompts: ["defective"]
-evaluate:
