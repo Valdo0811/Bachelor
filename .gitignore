@@ -1,6 +1,6 @@
-dataset/
+dataset/mvtec_anomaly_detection
 src/sam3
 runs/
 __pycache__/
 *.pt
-configs/
+

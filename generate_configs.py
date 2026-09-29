@@ -1,4 +1,5 @@
 import json
+import os
 
 with open('prompts.json', 'r') as file:
     data = json.load(file)
@@ -18,6 +19,8 @@ base_dict = {
     "evaluate":""
 }
 
+os.makedirs(f'configs', exist_ok=True)
+
 for key in data:
     category = data[key]
     for k in category:
@@ -32,4 +35,7 @@ for key in data:
             base_dict["infer"] = base_infer_dict
             config.write(str(base_dict))
             f.write(f'python experiment.py --config configs/{key}_{k}_{prompt}.yaml\n')
+            os.makedirs(f'figure/aupro/{key}/{k}', exist_ok=True)
+            os.makedirs(f'figure/image_auroc/{key}/{k}', exist_ok=True)
+            os.makedirs(f'figure/pixel_auroc/{key}/{k}', exist_ok=True)
 
