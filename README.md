@@ -72,4 +72,6 @@ after you have all the results you want.
 
 You can run
 
-to create a table listing all the prompts used per errortype
+to create a table listing all the prompts used per errortype.
+
+To test and visualize single images you can use the test.ipynb notebook.
